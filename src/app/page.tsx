@@ -4,15 +4,10 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
-const HERO_BACKGROUND_IMAGE_URL =
-  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2400&q=80";
-
-const BOTTLE_BACKGROUND_IMAGES = [
-  "https://images.unsplash.com/photo-1514361892635-eae32c0b3b2f?auto=format&fit=crop&w=2400&q=80",
-  "https://images.unsplash.com/photo-1510626176961-4b37d0c92e8b?auto=format&fit=crop&w=2400&q=80",
-  "https://images.unsplash.com/photo-1541976076758-347942db1970?auto=format&fit=crop&w=2400&q=80",
-  "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=2400&q=80",
-];
+const HERO_BACKGROUND_IMAGE_URL = "/2.png";
+const BOTTLE_BACKGROUND_IMAGE_URL = "/2.png";
+const WHERE_TO_BUY_URL =
+  "https://www.quickrunfast.com/category/silky-gold-products";
 
 export default function HomePage() {
   const afterHeroSentinelRef = useRef<HTMLDivElement | null>(null);
@@ -20,19 +15,6 @@ export default function HomePage() {
   const [showFixedNav, setShowFixedNav] = useState(false);
   const [isBottleActive, setIsBottleActive] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [bottleBgUrl, setBottleBgUrl] = useState(
-    () => BOTTLE_BACKGROUND_IMAGES[0],
-  );
-
-  useEffect(() => {
-    const index = Math.floor(Math.random() * BOTTLE_BACKGROUND_IMAGES.length);
-    const nextUrl = BOTTLE_BACKGROUND_IMAGES[index] ?? BOTTLE_BACKGROUND_IMAGES[0];
-    const frame = window.requestAnimationFrame(() => {
-      setBottleBgUrl(nextUrl);
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
-
   useEffect(() => {
     if (!isMenuOpen) return;
 
@@ -56,12 +38,13 @@ export default function HomePage() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setShowFixedNav(!entry.isIntersecting);
+        // Show only when we have scrolled past the hero section
+        setShowFixedNav(entry.boundingClientRect.top <= 0);
       },
       {
         root: null,
         threshold: 0,
-        rootMargin: "-10px 0px 0px 0px",
+        rootMargin: "0px",
       },
     );
 
@@ -110,7 +93,7 @@ export default function HomePage() {
   } as React.CSSProperties;
 
   const bottleStyle = {
-    ["--bottle-bg-url" as never]: `url("${bottleBgUrl}")`,
+    ["--bottle-bg-url" as never]: `url("${BOTTLE_BACKGROUND_IMAGE_URL}")`,
   } as React.CSSProperties;
 
   return (
@@ -121,9 +104,14 @@ export default function HomePage() {
         aria-label="Where to buy navigation"
       >
         <div className={styles.basicsPill}>
-          <Link className={styles.pillLink} href="/#where-to-buy">
+          <a
+            className={styles.pillLink}
+            href={WHERE_TO_BUY_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
             WHERE TO BUY?
-          </Link>
+          </a>
           <div className={styles.pillMark} aria-hidden />
           <button
             className={styles.pillMenu}
@@ -143,9 +131,9 @@ export default function HomePage() {
         <header className={styles.header}>
           <nav className={styles.navLeft} aria-label="Primary">
             <Link href="/#philosophy">PHILOSOPHY</Link>
-            <Link href="/#bottle">THE BOTTLE</Link>
-            <Link href="/#vodka">VODKA</Link>
-            <Link href="/#seltzers">SELTZERS</Link>
+            <Link href="/#serum">THE SERUM</Link>
+            <Link href="/#products">PRODUCTS</Link>
+            <Link href="/#ingredients">INGREDIENTS</Link>
           </nav>
 
           <div className={styles.brand} aria-label="Brand">
@@ -158,26 +146,27 @@ export default function HomePage() {
           </div>
 
           <nav className={styles.navRight} aria-label="Secondary">
-            <Link href="/#mocktails">MOCKTAILS</Link>
-            <Link href="/#creators">CREATORS</Link>
-            <Link href="/#where-to-buy">WHERE TO BUY?</Link>
+            <Link href="/#philosophy">SKINCARE</Link>
+            <a href={WHERE_TO_BUY_URL} target="_blank" rel="noreferrer">
+              WHERE TO BUY?
+            </a>
             <span className={styles.language}>ENGLISH</span>
           </nav>
         </header>
 
         <main className={styles.main}>
           <h1 className={styles.heroTitle}>
-            <span className={styles.heroBorn}>Born From</span>
-            <span className={styles.heroThe}>The</span>
-            <span className={styles.heroUntouched}>Untouched</span>
-            <span className={styles.heroWilderness}>Wilderness.</span>
+            <span className={styles.heroBorn}>Rice Face</span>
+            <span className={styles.heroThe}>Serum</span>
+            <span className={styles.heroUntouched}>Purely</span>
+            <span className={styles.heroWilderness}>Natural.</span>
           </h1>
 
           <div className={styles.bottomLeft}>
             <div className={styles.filmCard}>
               <div className={styles.filmPreview} aria-hidden />
               <div className={styles.filmMeta}>
-                <div className={styles.filmTitle}>WATCH THE FILM</div>
+                <div className={styles.filmTitle}>WATCH THE PROCESS</div>
                 <div className={styles.filmFooter}>
                   <span className={styles.play}>(PLAY)</span>
                   <span className={styles.duration}>2MIN 26S</span>
@@ -188,12 +177,12 @@ export default function HomePage() {
 
           <div className={styles.bottomRight}>
             <p className={styles.storyText}>
-              FROM THE SILENCE OF CANADA&apos;S NORTHERN VALLEYS, A CLARITY
-              EMERGES. SILKY GOLD IS BORN FROM PLACES WHERE NATURE STILL DECIDES
-              THE RULES.
+              FROM THE PURITY OF WHITE RICE AND NATURE&apos;S FINEST EXTRACTS, A
+              GLOW EMERGES. SILKY GOLD SERUMS ARE BORN FROM PLACES WHERE NATURE
+              DECIDES THE RULES.
             </p>
-            <Link className={styles.storyLink} href="/#story">
-              DISCOVER OUR STORY
+            <Link className={styles.storyLink} href="/#philosophy">
+              DISCOVER OUR SCIENCE
             </Link>
           </div>
         </main>
@@ -208,7 +197,7 @@ export default function HomePage() {
 
             <div className={styles.basicsCenter}>
               <h2 className={styles.basicsTitle}>
-                We go back to <em>basics</em>, only real ingredients.
+                We go back to <em>basics</em>, with white rice extracts.
               </h2>
             </div>
 
@@ -216,12 +205,12 @@ export default function HomePage() {
           </div>
 
           <div className={`${styles.basicsFooter} ${styles.reveal}`} data-reveal>
-            <div className={styles.basicsKicker}>NO ADDITIVE. NO ARTIFICE.</div>
+            <div className={styles.basicsKicker}>NO HARSH CHEMICALS. NO ARTIFICE.</div>
             <p className={styles.basicsBody}>
-              IN A WORLD OF SHORTCUTS, WE CHOOSE RESTRAINT. NO ADDITIVES. NO
-              ARTIFICE. FEWER, BETTER ELEMENTS HANDLED WITH CARE. IT&apos;S NOT
-              ABOUT ADDING MORE. IT&apos;S ABOUT LEAVING ASIDE REMOVING WHAT
-              ISN&apos;T NECESSARY AND LETTING NATURE DO WHAT IT ALREADY DOES BEST.
+              IN A WORLD OF COMPLEX SKINCARE, WE CHOOSE SIMPLICITY. OUR SERUMS
+              USE WHITE RICE, NIACINAMIDE, AND VITAMIN B5. FEWER, BETTER
+              INGREDIENTS HANDLED WITH CARE. IT&apos;S NOT ABOUT ADDING MORE.
+              IT&apos;S ABOUT REVEALING YOUR NATURAL GLOW.
             </p>
           </div>
         </section>
@@ -267,7 +256,7 @@ export default function HomePage() {
 
         <section
           className={styles.bottleScrollSection}
-          id="bottle"
+          id="serum"
           style={bottleStyle}
           ref={bottleSectionRef}
         >
@@ -280,58 +269,93 @@ export default function HomePage() {
           <div className={styles.bottlePanels}>
             <div className={styles.bottlePanel}>
               <h2 className={`${styles.bottleHeroHeadline} ${styles.reveal}`} data-reveal>
-                The bottle is our <em>tribute</em> to the source.
+                The serum is our <em>tribute</em> to your skin.
               </h2>
             </div>
 
-            <div className={styles.bottlePanel}>
+            <div className={styles.bottlePanel} id="products">
               <div className={`${styles.bottlePanelSplit} ${styles.reveal}`} data-reveal>
                 <div className={styles.bottleLeft}>
-                  <div className={styles.bottleLabel}>THE NAME</div>
-                  <div className={styles.bottleName}>Silky Gold</div>
+                  <div
+                    className={`${styles.productVisual} ${styles.productVisualRose}`}
+                    aria-hidden
+                  />
+                  <div className={styles.bottleLabel}>ROSE SERUM</div>
+                  <div className={styles.bottleName}>Rose White Rice</div>
                   <p className={styles.bottleBody}>
-                    AURORA MEETS OPAL, OCTOBER&apos;S BIRTHSTONE AND THE MONTH
-                    SILKY GOLD WAS BORN. BOTH SHARE THE SAME GREEN IRIDESCENCE
-                    THAT ANCHORS OUR IDENTITY.
+                    ENRICHED WITH ROSE EXTRACT, NIACINAMIDE, AND VITAMIN B5.
+                    PERFECT FOR CALMING AND HYDRATING YOUR SKIN WHILE REVEALING
+                    A NATURAL ROSY GLOW.
                   </p>
                 </div>
 
                 <div className={styles.bottleRight}>
-                  <div className={styles.bottleLabel}>THE CLOSURE</div>
-                  <div className={styles.bottleStackTitle}>
-                    Nature&apos;s
-                    <br />
-                    Dancing
-                    <br />
-                    Lights
-                  </div>
+                  <div
+                    className={`${styles.productVisual} ${styles.productVisualAloe}`}
+                    aria-hidden
+                  />
+                  <div className={styles.bottleLabel}>ALOEVERA SERUM</div>
+                  <div className={styles.bottleName}>Aloevera White Rice</div>
+                  <p className={styles.bottleBody}>
+                    INFUSED WITH ALOEVERA EXTRACT AND XYLITOL. DESIGNED TO
+                    SOOTHE IRRITATION AND PROVIDE INTENSE MOISTURE FOR A
+                    REFRESHED FEEL.
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className={styles.bottlePanel}>
               <div className={`${styles.bottlePanelSplit} ${styles.reveal}`} data-reveal>
-                <div className={styles.bottleCenterTop}>
-                  <div className={styles.bottleLabel}>THE BOTTLE</div>
-                  <div className={styles.bottleStackTitle}>
-                    Modern
-                    <br />
-                    Classic
-                  </div>
-                  <p className={styles.bottleBodySmall}>
-                    INSPIRED BY EARLY VODKA CRAFT AND ITS FIRST BOTTLE
-                    SILHOUETTES, WE KEPT THE ESSENCE BUT GAVE A MODERN TWIST TO
-                    THE RECIPE AND THE DESIGN.
+                <div className={styles.bottleLeft}>
+                  <div
+                    className={`${styles.productVisual} ${styles.productVisualHoney}`}
+                    aria-hidden
+                  />
+                  <div className={styles.bottleLabel}>HONEY SERUM</div>
+                  <div className={styles.bottleName}>Honey White Rice</div>
+                  <p className={styles.bottleBody}>
+                    FEATURING HONEY EXTRACT FOR NOURISHMENT. RICH IN ANTIOXIDANTS
+                    TO HELP PROTECT AND SOFTEN YOUR SKIN FOR A SUPPLE TEXTURE.
                   </p>
                 </div>
 
-                <div className={styles.bottleRightBottom}>
-                  <div className={styles.bottleLabel}>THE BASE</div>
-                  <div className={styles.bottleStackTitle}>
-                    The Flow of
-                    <br />
-                    Water
-                  </div>
+                <div className={styles.bottleRight}>
+                  <div
+                    className={`${styles.productVisual} ${styles.productVisualBeetroot}`}
+                    aria-hidden
+                  />
+                  <div className={styles.bottleLabel}>BEETROOT SERUM</div>
+                  <div className={styles.bottleName}>Beetroot White Rice</div>
+                  <p className={styles.bottleBody}>
+                    POWERED BY BEETROOT EXTRACT. PACKED WITH VITAMINS TO
+                    BRIGHTEN DULL SKIN AND PROVIDE A HEALTHY, RADIANT
+                    COMPLEXION.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.bottlePanel} id="ingredients">
+              <div className={`${styles.reveal}`} data-reveal>
+                <div className={styles.bottleLabel}>CORE INGREDIENTS</div>
+                <div className={styles.bottleName}>The Science</div>
+                <p className={styles.bottleBody} style={{ maxWidth: '800px', margin: '0 auto' }}>
+                  WATER, SODIUM GLUTANATE, GLYCERIN, VITAMIN B5, XANTHAN GUM,
+                  NIACINAMIDE, PROPYLENE GLYCOL, PROPENEDIOL, SODIUM HYDROXIDE,
+                  XYLITOL, FRAGRANCE, PHENOXY ETHANOL, ETHYL HEXYL GLYCERIN,
+                  BUTYLENE GLYCOL.
+                </p>
+                <div className={styles.ingredientsGallery} aria-hidden>
+                  <div
+                    className={`${styles.ingredientsVisual} ${styles.ingredientsVisualFeature}`}
+                  />
+                  <div
+                    className={`${styles.ingredientsVisual} ${styles.ingredientsVisualBlend}`}
+                  />
+                  <div
+                    className={`${styles.ingredientsVisual} ${styles.ingredientsVisualRose}`}
+                  />
                 </div>
               </div>
             </div>
@@ -364,22 +388,22 @@ export default function HomePage() {
 
           <div className={`${styles.leaveInner} ${styles.reveal}`} data-reveal>
             <h2 className={styles.leaveTitle}>
-              <span className={styles.leaveLeave}>Leave</span>
-              <span className={styles.leaveNo}>No</span>
-              <span className={styles.leaveTrace}>Trace</span>
+              <span className={styles.leaveLeave}>Clean</span>
+              <span className={styles.leaveNo}>Skin</span>
+              <span className={styles.leaveTrace}>Care</span>
             </h2>
 
             <div className={styles.leaveMedia} aria-hidden />
 
             <p className={styles.leaveBody}>
-              OUR COMMITMENT EXTENDS BEYOND PURITY. IT&apos;S A MATTER OF
-              RESPONSIBILITY. WE USE RECYCLED MATERIALS, UPCYCLED FRUITS, AND
-              DESIGN PROCESSES THAT RESPECT THE LAND THAT INSPIRES US.
+              OUR COMMITMENT EXTENDS BEYOND BEAUTY. IT&apos;S A MATTER OF
+              RESPONSIBILITY. WE USE RECYCLED MATERIALS, UP-CYCLED RICE HUSKS,
+              AND DESIGN PROCESSES THAT RESPECT THE LAND THAT INSPIRES US.
             </p>
           </div>
         </section>
 
-        <section className={styles.brandSection} id="vodka">
+        <section className={styles.brandSection} id="products">
           <div className={styles.brandBg} aria-hidden />
           <div className={styles.brandTopo} aria-hidden />
 
@@ -399,17 +423,23 @@ export default function HomePage() {
 
           <div className={styles.footerWatermark} aria-hidden>
             <div className={styles.footerWatermarkTrack}>
-              <span className={styles.footerWatermarkText}>Purity Taste</span>
+              <span className={styles.footerWatermarkText}>Radiance Glow</span>
               <span className={styles.footerWatermarkText} aria-hidden>
-                Purity Taste
+                Radiance Glow
               </span>
               <span className={styles.footerWatermarkText} aria-hidden>
-                Purity Taste
+                Radiance Glow
               </span>
             </div>
           </div>
 
-          <a className={`${styles.footerCta} ${styles.reveal}`} data-reveal href="#where-to-buy">
+          <a
+            className={`${styles.footerCta} ${styles.reveal}`}
+            data-reveal
+            href={WHERE_TO_BUY_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
             <span>WHERE TO BUY?</span>
             <span className={styles.footerCtaArrow} aria-hidden>
               ↗
@@ -431,7 +461,7 @@ export default function HomePage() {
                 </span>
               </button>
               <span className={styles.footerLinkRight}>
-                WEBSITE BY LOCOMOTIVE
+                WEBSITE BY Nexen Bloom
               </span>
             </div>
           </div>
@@ -485,9 +515,14 @@ export default function HomePage() {
           role="document"
         >
           <div className={styles.menuPanelHeader}>
-            <Link className={styles.menuWhere} href="/#where-to-buy">
+            <a
+              className={styles.menuWhere}
+              href={WHERE_TO_BUY_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
               WHERE TO BUY?
-            </Link>
+            </a>
 
             <div className={styles.menuBrand} aria-label="Brand">
               <div className={styles.menuBrandText}>
@@ -512,32 +547,27 @@ export default function HomePage() {
             <Link href="/#philosophy" onClick={() => setIsMenuOpen(false)}>
               Philosophy
             </Link>
-            <Link href="/#bottle" onClick={() => setIsMenuOpen(false)}>
-              The bottle
+            <Link href="/#serum" onClick={() => setIsMenuOpen(false)}>
+              The serum
             </Link>
-            <Link href="/#vodka" onClick={() => setIsMenuOpen(false)}>
-              Vodka
+            <Link href="/#products" onClick={() => setIsMenuOpen(false)}>
+              Products
             </Link>
-            <Link href="/#seltzers" onClick={() => setIsMenuOpen(false)}>
-              Seltzers
-            </Link>
-            <Link href="/#mocktails" onClick={() => setIsMenuOpen(false)}>
-              Mocktails
-            </Link>
-            <Link href="/#creators" onClick={() => setIsMenuOpen(false)}>
-              Creators
+            <Link href="/#ingredients" onClick={() => setIsMenuOpen(false)}>
+              Ingredients
             </Link>
           </nav>
 
           <div className={styles.menuPanelFooter}>
             <select className={styles.menuSelect} aria-label="Language">
               <option>ENGLISH</option>
-              <option>FRENCH</option>
             </select>
 
             <Link
               className={styles.menuPanelCta}
-              href="/#where-to-buy"
+              href={WHERE_TO_BUY_URL}
+              target="_blank"
+              rel="noreferrer"
               onClick={() => setIsMenuOpen(false)}
             >
               <span>WHERE TO BUY?</span>
