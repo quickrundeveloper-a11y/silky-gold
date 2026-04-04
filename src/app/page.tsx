@@ -15,14 +15,19 @@ export default function HomePage() {
   const [showFixedNav, setShowFixedNav] = useState(false);
   const [isBottleActive, setIsBottleActive] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen && !isVideoOpen) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsMenuOpen(false);
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        setIsVideoOpen(false);
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -30,7 +35,7 @@ export default function HomePage() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isVideoOpen]);
 
   useEffect(() => {
     const sentinel = afterHeroSentinelRef.current;
@@ -163,7 +168,7 @@ export default function HomePage() {
           </h1>
 
           <div className={styles.bottomLeft}>
-            <div className={styles.filmCard}>
+            <div className={styles.filmCard} onClick={() => setIsVideoOpen(true)} role="button" tabIndex={0}>
               <div className={styles.filmPreview} aria-hidden />
               <div className={styles.filmMeta}>
                 <div className={styles.filmTitle}>WATCH THE PROCESS</div>
@@ -576,6 +581,35 @@ export default function HomePage() {
               </span>
             </Link>
           </div>
+        </div>
+      </div>
+
+      <div
+        className={`${styles.videoOverlay} ${isVideoOpen ? styles.videoOverlayVisible : styles.videoOverlayHidden}`}
+        aria-hidden={!isVideoOpen}
+        aria-modal="true"
+        role="dialog"
+      >
+        <button
+          className={styles.videoClose}
+          type="button"
+          onClick={() => setIsVideoOpen(false)}
+          aria-label="Close video"
+        >
+          <span>CLOSE</span>
+          <span aria-hidden>×</span>
+        </button>
+
+        <div className={styles.videoContainer}>
+          {isVideoOpen && (
+            <video
+              className={styles.videoPlayer}
+              src="/rosevideo.mp4"
+              controls
+              autoPlay
+              playsInline
+            />
+          )}
         </div>
       </div>
     </div>
