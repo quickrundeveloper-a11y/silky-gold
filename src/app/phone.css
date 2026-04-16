@@ -1,0 +1,74 @@
+/* Media query for phone screens */
+@media (max-width: 768px) {
+  .page {
+    font-size: 14px;
+  }
+
+  .heroSection {
+    min-height: 80vh;
+    padding: 0 20px;
+  }
+
+  .fixedNav {
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  /* Company Section Fixes */
+  .companySection {
+    padding: 140px 24px 100px; /* Increased top padding for better breathing room */
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem; /* Larger gap between title and images */
+  }
+
+  .companyTitle {
+    font-size: 3rem !important; /* Slightly smaller to feel less heavy */
+    line-height: 0.9 !important;
+    order: 1;
+    margin-bottom: 0;
+    text-align: center;
+    letter-spacing: -0.04em;
+  }
+
+  .companyImages {
+    position: relative !important;
+    inset: auto !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important; /* Larger gap between images */
+    width: 100% !important;
+    max-width: 440px !important;
+    order: 2;
+    pointer-events: auto !important;
+    z-index: 1 !important;
+    padding: 0 10px;
+  }
+
+  .companyImgLeft,
+  .companyImgBottomLeft,
+  .companyImgTopRight,
+  .companyImgRight {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    aspect-ratio: 0.85 / 1 !important; /* Slightly more vertical for elegance */
+    height: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    border-radius: 24px !important; /* More rounded for softness */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important; /* Softer shadow */
+  }
+}
