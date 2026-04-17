@@ -323,7 +323,7 @@ a {
   position: relative;
 }
 .skincare-section {
-  background-color: #fdfdfd; /* Very subtle off-white */
+  background-color: #fffcfc; /* Very subtle off-white */
   padding: 8rem 6rem 0rem 6rem;
   position: relative;
   overflow: hidden;
@@ -419,7 +419,7 @@ a {
   width: 500px;
   height: 750px;
   z-index: 1;
-  overflow: visible; /* 🔥 IMPORTANT */
+  overflow: hidden; /* 🔥 IMPORTANT */
   will-change: transform;
 }
 
@@ -818,16 +818,15 @@ a {
 
 .product-slider-varnaya {
   display: flex;
-  flex-direction: row; /* Normal flow but we'll use justify-content or padding */
+  flex-direction: row;
   gap: 1.5rem;
   overflow-x: auto;
   padding-bottom: 2rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
   width: 100%;
-  padding-left: 4rem; /* Added padding to push cards to the right */
-  justify-content: flex-end; /* Push cards towards the RIGHT image */
-  padding-right: 4rem; /* Gap from the RIGHT image */
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .product-slider-varnaya::-webkit-scrollbar {

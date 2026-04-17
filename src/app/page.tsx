@@ -55,14 +55,14 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
               <div className="blob-inner">
                 {isMobile ? (
                   <img
-                    src="https://images.pexels.com/photos/3762871/pexels-photo-3762871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    src="/skincare.jpg"
                     alt="Featured Skincare"
                     className="woman-image"
                   />
                 ) : (
                   <motion.img
                     style={{ y: innerImageY }}
-                    src="https://images.pexels.com/photos/3762871/pexels-photo-3762871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    src="/skincare.jpg"
                     alt="Featured Skincare"
                     className="woman-image"
                   />
@@ -133,33 +133,50 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
  
 
   function PureBrillianceSection() {
+    const sliderRef = useRef<HTMLDivElement>(null);
+
+    const scrollNext = () => {
+      if (sliderRef.current) {
+        const container = sliderRef.current;
+        const scrollAmount = 340; // Card width (310) + gap (1.5rem ≈ 24px) + some buffer
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        if (container.scrollLeft >= maxScroll - 10) {
+          // If at the end, scroll back to beginning
+          container.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }
+      }
+    };
+
     const products = [
       {
         id: 1,
         name: "ALOEVERA WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/aloeverawr.png",
         tag: "WHITE RICE"
       },
       {
         id: 2,
         name: "ROSE WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/3762882/pexels-photo-3762882.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/rosewr.png",
         tag: "WHITE RICE"
       },
       {
         id: 3,
         name: "HONEY WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/3616828/pexels-photo-3616828.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/honeywr.png",
         tag: "WHITE RICE"
       },
       {
         id: 4,
         name: "BETROOT WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/3616828/pexels-photo-3616828.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/beetrootwr.png",
         tag: "WHITE RICE"
       }
     ];
@@ -167,7 +184,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
     return (
       <section className="pure-brilliance-section" id="shop">
         <div className="brilliance-left">
-          <img src="https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Pure Brilliance Hero" className="brilliance-hero-img" />
+          <img src="/luminosity.jpg" alt="Pure Brilliance Hero" className="brilliance-hero-img" />
         </div>
         <div className="brilliance-right">
           <div className="brilliance-header">
@@ -176,15 +193,21 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
               <br />
               <span className="italic">Luminosity</span>
             </h2>
-            <button className="round-arrow-btn">
+            <button className="round-arrow-btn" onClick={scrollNext}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
           </div>
-          <div className="product-slider">
+          <div className="product-slider" ref={sliderRef}>
             {products.map((product) => (
-              <div key={product.id} className="product-card-brilliance">
+              <a 
+                key={product.id} 
+                href="https://www.quickrunfast.com/category/silky-gold-products" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="product-card-brilliance"
+              >
                 <div className="card-top">
                   <span className="product-tag-white">{product.tag}</span>
                   <div className="bag-icon-circle">
@@ -201,7 +224,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
                   <p className="product-name-brilliance">{product.name}</p>
                   <span className="product-price-brilliance">{product.price}</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -210,33 +233,49 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
   }
 
   function VarnayaBlendsSection() {
-    const products = [
+    const sliderRef = useRef<HTMLDivElement>(null);
+
+    const scrollNext = () => {
+      if (sliderRef.current) {
+        const container = sliderRef.current;
+        const scrollAmount = 340; 
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        if (container.scrollLeft >= maxScroll - 10) {
+          container.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }
+      }
+    };
+
+const products = [
       {
         id: 1,
         name: "ALOEVERA WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/aloeverawr.png",
         tag: "WHITE RICE"
       },
       {
         id: 2,
         name: "ROSE WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/3762882/pexels-photo-3762882.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/rosewr.png",
         tag: "WHITE RICE"
       },
       {
         id: 3,
         name: "HONEY WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/3616828/pexels-photo-3616828.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/honeywr.png",
         tag: "WHITE RICE"
       },
       {
         id: 4,
         name: "BETROOT WHITE RICE FACE SERUM",
         price: "₹899",
-        image: "https://images.pexels.com/photos/3616828/pexels-photo-3616828.jpeg?auto=compress&cs=tinysrgb&w=800",
+        image: "/beetrootwr.png",
         tag: "WHITE RICE"
       }
     ];
@@ -250,15 +289,21 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
               <br />
               <span className="italic">Radiance</span>
             </h2>
-            <button className="round-arrow-btn">
+            <button className="round-arrow-btn" onClick={scrollNext}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </button>
           </div>
-          <div className="product-slider-varnaya">
+          <div className="product-slider-varnaya" ref={sliderRef}>
             {products.map((product) => (
-              <div key={product.id} className="product-card-varnaya">
+              <a 
+                key={product.id} 
+                href="https://www.quickrunfast.com/category/silky-gold-products" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="product-card-varnaya"
+              >
                 <div className="card-top">
                   <span className="product-tag-white">{product.tag}</span>
                   <div className="bag-icon-circle">
@@ -275,18 +320,19 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
                   <p className="product-name-brilliance">{product.name}</p>
                   <span className="product-price-brilliance">{product.price}</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
         <div className="varnaya-right">
-          <div className="varnaya-info-text">
+         
+          <img src="/radiance.jpg" alt="Varnaya Blends Hero" className="varnaya-hero-img" />
+        </div>
+         {/* <div className="varnaya-info-text">
             STAY GLOWING AND HEALTHY WITHOUT
             <br />
             HAVING TO THINK ABOUT IT.
-          </div>
-          <img src="https://images.pexels.com/photos/3762871/pexels-photo-3762871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Varnaya Blends Hero" className="varnaya-hero-img" />
-        </div>
+          </div> */}
       </section>
     );
   }
@@ -382,7 +428,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
         <div className="quality-left">
           <div className="quality-content-wrapper">
             <div className="dropper-image-container">
-              <img src="https://images.pexels.com/photos/3616828/pexels-photo-3616828.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Quality Ingredients" className="dropper-img" />
+              <img src="/offerleft.jpg" alt="Quality Ingredients" className="dropper-img" />
               <svg className="curved-arrow-quality" width="300" height="150" viewBox="0 0 300 150" fill="none">
                 <path d="M10 80 Q 150 150, 290 20" stroke="#333" strokeWidth="1" fill="none" strokeDasharray="4 2" />
                 <path d="M290 20 L 280 25 M 290 20 L 285 32" stroke="#333" strokeWidth="1" />
@@ -415,10 +461,10 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
               </h2>
               <div className="shop-now-group">
                 <button className="round-arrow-btn black">
-                  <a href="https://www.quickrunfast.com/category/silky-gold-products" target="_blank"></a>
+                  <a href="https://www.quickrunfast.com/category/silky-gold-products" target="_blank">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M7 17L17 7M17 17V7H7" />
-                  </svg>
+                  </svg></a>
                 </button>
                 <span className="shop-now-text">SHOP NOW</span>
               </div>
@@ -429,7 +475,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
               Grab the offer before it ends.
             </p>
             <div className="product-display-box">
-              <img src="https://images.pexels.com/photos/3762882/pexels-photo-3762882.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Product Offer" className="offer-product-img" />
+              <img src="/serumdrop.webp" alt="Product Offer" className="offer-product-img" />
             </div>
           </div>
         </div>
@@ -458,12 +504,12 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
           <div className="connect-content-grid">
             {/* Top Left Fix Image */}
             <div className="fix-img-left">
-              <img src="https://images.pexels.com/photos/3762871/pexels-photo-3762871.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Connect Left" />
+              <img src="/left2.jpg" alt="Connect Left" />
             </div>
 
             {/* Center Main Fix Image */}
             <div className="main-center-img">
-              <img src="https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Connect Center" />
+              <img src="/face.jpg" alt="Connect Center" />
             </div>
 
             {/* Bottom Left Info Text */}
@@ -479,17 +525,18 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
 
             {/* Bottom Right Parallax Image */}
             <motion.div style={{ y: bottomImageY }} className="parallax-img-right">
-              <img src="https://images.pexels.com/photos/3762882/pexels-photo-3762882.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Connect Right" />
+              <img src="/right2.jpg" alt="Connect Right" />
             </motion.div>
 
             {/* Instagram Button Bottom Center */}
             <div className="insta-btn-container">
+              <a href="https://www.instagram.com/silkygoldsoffical?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" className="mobile-social-btn" target="_blank" rel="noopener noreferrer">
               <button className="insta-follow-btn">
                 <span className="insta-label">INSTAGRAM</span>
                 <div className="insta-icon-circle">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                 </div>
-              </button>
+              </button></a>
             </div>
           </div>
         </div>
@@ -498,36 +545,70 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
   }
 
   function NewsletterSection() {
+    const [email, setEmail] = useState("");
+    const [subscribed, setSubscribed] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleSubscribe = (e: React.MouseEvent | React.FormEvent) => {
+      e.preventDefault();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        setSubscribed(true);
+        setError("");
+      } else {
+        setError("PLEASE ENTER A VALID EMAIL");
+      }
+    };
+
     return (
       <section className="newsletter-section">
         <div className="newsletter-bg">
-          <img src="https://images.pexels.com/photos/3616828/pexels-photo-3616828.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Newsletter Background" className="newsletter-bg-img" />
+          <img src="/hearfromus.jpg" alt="Newsletter Background" className="newsletter-bg-img" />
         </div>
         
         <div className="newsletter-overlay-container">
           <div className="newsletter-dark-box">
-            <h2 className="newsletter-title">HEAR MORE FROM US</h2>
-            <p className="newsletter-subtitle">Get the latest news about skincare tips and new products.</p>
-            
-            <div className="newsletter-input-group">
-              <input type="email" placeholder="ENTER YOUR EMAIL" className="newsletter-input" />
-            </div>
-            
-            <div className="newsletter-action-group">
-              <div className="subscribe-circle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17L17 7M17 7H17V17M17 7H7" />
-                </svg>
+            {subscribed ? (
+              <div className="newsletter-success-content" style={{ textAlign: 'center', padding: '2rem 0' }}>
+                <h2 className="newsletter-title">THANK YOU!</h2>
+                <p className="newsletter-subtitle" style={{ marginTop: '1rem' }}>WE WILL NOTIFY YOU.</p>
+                <div className="newsletter-line" style={{ margin: '2rem auto', width: '40px' }}></div>
+                <p className="newsletter-disclaimer">You have successfully joined our community.</p>
               </div>
-              <a href="#" className="subscribe-link">SUBSCRIBE</a>
-            </div>
-            
-            <div className="newsletter-footer-mini">
-              <div className="newsletter-line"></div>
-              <p className="newsletter-disclaimer">
-                No Spam, only quality articles to help you be<br/>more radiant. You can opt out anytime.
-              </p>
-            </div>
+            ) : (
+              <>
+                <h2 className="newsletter-title">HEAR MORE FROM US</h2>
+                <p className="newsletter-subtitle">Get the latest news about skincare tips and new products.</p>
+                
+                <form onSubmit={handleSubscribe} className="newsletter-input-group">
+                  <input 
+                    type="email" 
+                    placeholder="ENTER YOUR EMAIL" 
+                    className="newsletter-input" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </form>
+                {error && <p style={{ color: '#ff4d4d', fontSize: '0.6rem', marginTop: '0.5rem', fontWeight: '700', letterSpacing: '0.1em' }}>{error}</p>}
+                
+                <div className="newsletter-action-group" onClick={handleSubscribe} style={{ cursor: 'pointer' }}>
+                  <div className="subscribe-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M7 17L17 7M17 7H17V17M17 7H7" />
+                    </svg>
+                  </div>
+                  <button onClick={handleSubscribe} className="subscribe-link" style={{ background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', cursor: 'pointer' }}>SUBSCRIBE</button>
+                </div>
+                
+                <div className="newsletter-footer-mini">
+                  <div className="newsletter-line"></div>
+                  <p className="newsletter-disclaimer">
+                    No Spam, only quality articles to help you be<br/>more radiant. You can opt out anytime.
+                  </p>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -559,7 +640,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
           <div className="footer-column">
             <h3>CONTACT US</h3>
             <ul>
-              <li><a href="mailto:support@silkygold.com">support@silkygold.com</a></li>
+              <li><a href="mailto:support@silkygolds.com">support@silkygolds.com</a></li>
               <li><a href="tel:9319851474">+91-93198-51474</a></li>
             </ul>
           </div>
@@ -734,6 +815,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
                   </button>
                   <div className="mobile-menu-logo">Silky Gold</div>
                   <button type="button" className="mobile-menu-cart" aria-label="Cart">
+                    <a target="_blank" href="https://www.quickrunfast.com/category/silky-gold-products">
                     <svg
                       width="21"
                       height="21"
@@ -747,7 +829,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
                       <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
                       <path d="M3 6h18" />
                       <path d="M16 10a4 4 0 0 1-8 0" />
-                    </svg>
+                    </svg></a>
                   </button>
                 </div>
 
@@ -761,7 +843,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
 
                 <div className="mobile-menu-footer">
                   <div className="mobile-menu-social">
-                    <a href="#" aria-label="Instagram" className="mobile-social-btn">
+                    <a target="_blank" href="https://www.instagram.com/silkygoldsoffical?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram" className="mobile-social-btn">
                       <svg
                         width="18"
                         height="18"
@@ -777,7 +859,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
                         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                       </svg>
                     </a>
-                    <a href="#" aria-label="X" className="mobile-social-btn">
+                    <a target="_blank" href="https://x.com/" aria-label="X" className="mobile-social-btn">
                       <svg
                         width="18"
                         height="18"
@@ -792,7 +874,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
                         <path d="M20 4 4 20" />
                       </svg>
                     </a>
-                    <a href="#" aria-label="YouTube" className="mobile-social-btn">
+                    <a target="_blank" href="https://www.youtube.com/" aria-label="YouTube" className="mobile-social-btn">
                       <svg
                         width="18"
                         height="18"
@@ -807,7 +889,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
                         <path d="m10 15 5-3-5-3z" />
                       </svg>
                     </a>
-                    <a href="#" aria-label="Facebook" className="mobile-social-btn">
+                    <a target="_blank" href="https://www.facebook.com/" aria-label="Facebook" className="mobile-social-btn">
                       <svg
                         width="18"
                         height="18"
@@ -825,11 +907,11 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
 
                   <div className="mobile-menu-contact">
                     <div className="mobile-menu-contact-label">CONTACT US</div>
-                    <a href="mailto:tk@brandsofbia.com" className="mobile-menu-contact-link">
-                      tk@brandsofbia.com
+                    <a href="mailto:support@silkygolds.com" className="mobile-menu-contact-link">
+                      support@silkygolds.com
                     </a>
-                    <a href="tel:111122223333" className="mobile-menu-contact-link">
-                      1111-2222-3333
+                    <a href="tel:9319851474" className="mobile-menu-contact-link">
+                      +91-93198-51474
                     </a>
                   </div>
                 </div>
