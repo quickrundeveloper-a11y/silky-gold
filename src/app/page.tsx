@@ -632,8 +632,8 @@ const products = [
           <div className="footer-column">
             <h3>FOLLOW US</h3>
             <ul>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Facebook</a></li>
+              <li><a target="_blank" href="https://www.instagram.com/silkygoldsoffical?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a></li>
+              <li><a target="_blank" href="https://www.facebook.com/">Facebook</a></li>
             </ul>
           </div>
           
