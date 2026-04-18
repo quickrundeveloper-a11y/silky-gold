@@ -154,28 +154,28 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
       {
         id: 1,
         name: "ALOEVERA WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/aloeverawr.png",
         tag: "WHITE RICE"
       },
       {
         id: 2,
         name: "ROSE WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/rosewr.png",
         tag: "WHITE RICE"
       },
       {
         id: 3,
         name: "HONEY WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/honeywr.png",
         tag: "WHITE RICE"
       },
       {
         id: 4,
         name: "BETROOT WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/beetrootwr.png",
         tag: "WHITE RICE"
       }
@@ -253,28 +253,28 @@ const products = [
       {
         id: 1,
         name: "ALOEVERA WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/aloeverawr.png",
         tag: "WHITE RICE"
       },
       {
         id: 2,
         name: "ROSE WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/rosewr.png",
         tag: "WHITE RICE"
       },
       {
         id: 3,
         name: "HONEY WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/honeywr.png",
         tag: "WHITE RICE"
       },
       {
         id: 4,
         name: "BETROOT WHITE RICE FACE SERUM",
-        price: "₹899",
+        price: "₹559",
         image: "/beetrootwr.png",
         tag: "WHITE RICE"
       }
