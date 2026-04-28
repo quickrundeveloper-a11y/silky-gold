@@ -55,14 +55,14 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
               <div className="blob-inner">
                 {isMobile ? (
                   <img
-                    src="/skincare.jpg"
+                    src="/skincare.jpeg"
                     alt="Featured Skincare"
                     className="woman-image"
                   />
                 ) : (
                   <motion.img
                     style={{ y: innerImageY }}
-                    src="/skincare.jpg"
+                    src="/skincare.jpeg"
                     alt="Featured Skincare"
                     className="woman-image"
                   />
@@ -184,7 +184,7 @@ const containerY = useTransform(scrollYProgress, [0, 1], [100, -150]);
     return (
       <section className="pure-brilliance-section" id="shop">
         <div className="brilliance-left">
-          <img src="/luminosity.jpg" alt="Pure Brilliance Hero" className="brilliance-hero-img" />
+          <img src="/luminosity2.jpeg" alt="Pure Brilliance Hero" className="brilliance-hero-img" />
         </div>
         <div className="brilliance-right">
           <div className="brilliance-header">
@@ -326,7 +326,7 @@ const products = [
         </div>
         <div className="varnaya-right">
          
-          <img src="/radiance.jpg" alt="Varnaya Blends Hero" className="varnaya-hero-img" />
+          <img src="/radiance2.jpeg" alt="Varnaya Blends Hero" className="varnaya-hero-img" />
         </div>
          {/* <div className="varnaya-info-text">
             STAY GLOWING AND HEALTHY WITHOUT
@@ -428,7 +428,7 @@ const products = [
         <div className="quality-left">
           <div className="quality-content-wrapper">
             <div className="dropper-image-container">
-              <img src="/offerleft.jpg" alt="Quality Ingredients" className="dropper-img" />
+              <img src="/offerleft2.jpeg" alt="Quality Ingredients" className="dropper-img" />
               <svg className="curved-arrow-quality" width="300" height="150" viewBox="0 0 300 150" fill="none">
                 <path d="M10 80 Q 150 150, 290 20" stroke="#333" strokeWidth="1" fill="none" strokeDasharray="4 2" />
                 <path d="M290 20 L 280 25 M 290 20 L 285 32" stroke="#333" strokeWidth="1" />
@@ -504,12 +504,12 @@ const products = [
           <div className="connect-content-grid">
             {/* Top Left Fix Image */}
             <div className="fix-img-left">
-              <img src="/left2.jpg" alt="Connect Left" />
+              <img src="/left.jpeg" alt="Connect Left" />
             </div>
 
             {/* Center Main Fix Image */}
             <div className="main-center-img">
-              <img src="/face.jpg" alt="Connect Center" />
+              <img src="/middle.jpeg" alt="Connect Center" />
             </div>
 
             {/* Bottom Left Info Text */}
@@ -525,7 +525,7 @@ const products = [
 
             {/* Bottom Right Parallax Image */}
             <motion.div style={{ y: bottomImageY }} className="parallax-img-right">
-              <img src="/right2.jpg" alt="Connect Right" />
+              <img src="/right.jpeg" alt="Connect Right" />
             </motion.div>
 
             {/* Instagram Button Bottom Center */}
@@ -762,7 +762,7 @@ const products = [
             playsInline
             className="hero-video"
           >
-            <source src="/hero.mp4" type="video/mp4" />
+            <source src="/hero2.mp4" type="video/mp4" />
           </video>
           
           <nav className="nav">

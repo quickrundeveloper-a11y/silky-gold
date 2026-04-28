@@ -313,7 +313,7 @@
     overflow: visible;
     transform: rotate(140deg);
     background: none;
-    clip-path: ellipse(65% 40% at 50% 50%);
+    clip-path: ellipse(65% 100% at 50% 50%);
   }
 
   .blob-inner {
