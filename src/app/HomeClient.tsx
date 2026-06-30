@@ -1137,6 +1137,7 @@ function HappyCustomersSection() {
               </div>
             )}
           </nav>
+          {/* Hero */}
 
           <div className="hero-content">
             <h1 className="hero-title">
